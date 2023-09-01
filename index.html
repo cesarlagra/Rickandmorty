@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<title>Rick and Morty Personajes</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<center><img src="img/Rick-and-Morty.png" width="35%" alt=""></center>
+<div class="contenedor-busqueda">
+    <label for="idPersonaje">Buscar personaje por ID:</label>
+    <input type="number" id="idPersonaje" min="1" max="826">
+    <button onclick="buscarYMostrarPersonaje()">Buscar</button>
+</div>
+<div id="contenedorPersonajes" class="contenedor-personajes"></div>
+<center><button onclick="borrarTodosLosPersonajes()">Borrar todos los personajes</button></center>
+<script src="script.js"></script>
+</body>
+</html>
