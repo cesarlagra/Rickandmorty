@@ -43,7 +43,8 @@ button:hover::before {
     background-size: 800%;
     border-radius: 12px;
     filter: blur(20px);
-    animation: glowing 20s linear infinite ;}
+    animation: glowing 20s linear infinite ;
+}
     
     @keyframes glowing {
         0% {

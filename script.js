@@ -31,26 +31,30 @@ function buscarYMostrarPersonaje() {
     .catch(error => console.error("Error al obtener el personaje:", error));
 }
 
+
+function guardarPersonajeEnLocalStorage(personaje) {
+    let personajes = JSON.parse(localStorage.getItem(claveLocalStorage)) || [];
+    if (!personajes.some(char => char.id === personaje.id)) {
+    personajes.push({ id: personaje.id, name: personaje.name, status: personaje.status, species: personaje.species, image: personaje.image });
+    localStorage.setItem(claveLocalStorage, JSON.stringify(personajes));
+    }
+}
+
+
 function mostrarPersonaje(personaje) {
     const tarjeta = document.createElement("div");
     tarjeta.classList.add("tarjeta");
-    tarjeta.setAttribute("data-id", personaje.id); 
+    tarjeta.setAttribute("data-id", personaje.id);
+
     tarjeta.innerHTML = `
-    <h2>${personaje.name}</h2>
-    <img src="${personaje.image}" alt="${personaje.nombre}" style="max-width: 100%;">
-    <p>Estado: ${personaje.status}</p>
-    <p>Especie: ${personaje.species}</p>
+    <h2>${personaje.name ? personaje.name : 'Nombre desconocido'}</h2>
+    <img src="${personaje.image ? personaje.image : 'URL_de_imagen_por_defecto'}" alt="${personaje.name ? personaje.name : 'Nombre desconocido'}" style="max-width: 100%;">
+    <p>Estado: ${personaje.status ? personaje.status : 'Estado desconocido'}</p>
+    <p>Especie: ${personaje.species ? personaje.species : 'Especie desconocida'}</p>
     <button onclick="eliminarPersonaje(${personaje.id})" class="btn-eliminar">Eliminar</button>
     `;
-    contenedorPersonajes.appendChild(tarjeta);
-}
 
-function guardarPersonajeEnLocalStorage(personaje) {
-let personajes = JSON.parse(localStorage.getItem(claveLocalStorage)) || [];
-if (!personajes.some(char => char.id === personaje.id)) {
-    personajes.push({ id: personaje.id, nombre: personaje.name, estado: personaje.status });
-    localStorage.setItem(claveLocalStorage, JSON.stringify(personajes));
-}
+    contenedorPersonajes.appendChild(tarjeta);
 }
 
 function borrarTodosLosPersonajes() {
